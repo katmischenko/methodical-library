@@ -3,667 +3,1025 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0c0a0f">
-  <title>Методическая библиотека — Mischenko Edu</title>
-  <meta name="description" content="Методические пособия по физике, информатике, математике, Python, Figma и HTML/CSS.">
+
+  <title>Mischenko Edu — библиотека учебных материалов</title>
+  <meta name="description" content="Учебные материалы по физике, информатике, математике, Python, Figma и HTML/CSS. Бесплатные пособия и авторские продукты Mischenko Edu.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #0c0a0f;
-      --panel: #15121a;
-      --panel-hover: #1d1823;
-      --text: #f7f2fa;
-      --muted: #a49aaa;
-      --line: #302737;
-      --accent: #ff6b6b;
-      --lavender: #c5b5ff;
-      --mint: #a7e8ce;
-      --peach: #ffd0ad;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, sans-serif;
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    button, input { font: inherit; }
-
-    .container {
-      width: min(1100px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.7px;
-    }
-
-    .logo span { color: var(--accent); }
-
-    .nav-link {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .hero {
-      padding: 76px 0 48px;
-      max-width: 780px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--mint);
-      font: 12px "JetBrains Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--mint);
-    }
-
-    h1 {
-      margin: 18px 0;
-      font-size: clamp(38px, 6vw, 66px);
-      line-height: 1.06;
-      letter-spacing: -2.8px;
-    }
-
-    h1 span { color: var(--accent); }
-
-    .hero p {
-      max-width: 590px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .stat {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 13px;
-      color: #ddd3e5;
-      font-size: 12px;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(25px, 4vw, 34px);
-      letter-spacing: -1px;
-    }
-
-    .section-heading p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .catalog { padding: 22px 0 70px; }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin: 25px 0 16px;
-    }
-
-    .filter {
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--muted);
-      padding: 9px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: .2s;
-      font-size: 13px;
-    }
-
-    .filter:hover {
-      color: var(--text);
-      border-color: var(--lavender);
-    }
-
-    .filter.active {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
-
-    .search {
-      width: 100%;
-      margin-bottom: 26px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      color: var(--text);
-      padding: 14px 16px;
-      border-radius: 12px;
-      outline: none;
-    }
-
-    .search:focus { border-color: var(--lavender); }
-
-    .search::placeholder { color: #817687; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 17px;
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      min-height: 340px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--panel);
-      transition: transform .2s, border-color .2s, background .2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #5a465f;
-      background: var(--panel-hover);
-    }
-
-    .cover {
-      min-height: 145px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background:
-        radial-gradient(ellipse at 80% 20%, #ff6b6b45, transparent 48%),
-        linear-gradient(135deg, #282033, #17131d);
-    }
-
-    .cover.lavender {
-      background: radial-gradient(ellipse at 80% 20%, #c5b5ff45, transparent 50%), #211a2b;
-    }
-
-    .cover.mint {
-      background: radial-gradient(ellipse at 80% 20%, #a7e8ce35, transparent 50%), #17251f;
-    }
-
-    .cover.peach {
-      background: radial-gradient(ellipse at 80% 20%, #ffd0ad35, transparent 50%), #292019;
-    }
-
-    .cover-code {
-      font: 12px "JetBrains Mono", monospace;
-      color: #c9bfd2;
-    }
-
-    .cover-symbol {
-      align-self: flex-end;
-      font-size: 35px;
-      font-weight: 800;
-      line-height: 1;
-      opacity: .9;
-    }
-
-    .card-body {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding: 19px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 12px;
-    }
-
-    .tag {
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: #28212f;
-      color: var(--lavender);
-      font-size: 11px;
-    }
-
-    .tag.free {
-      background: #183027;
-      color: var(--mint);
-    }
-
-    .tag.paid {
-      background: #35251d;
-      color: var(--peach);
-    }
-
-    .tag.planned {
-      background: #29232e;
-      color: #c0b6c7;
-    }
-
-    .card h3 {
-      margin: 0 0 9px;
-      font-size: 18px;
-      line-height: 1.35;
-      letter-spacing: -.4px;
-    }
-
-    .card p {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .card-bottom {
-      margin-top: auto;
-      padding-top: 5px;
-    }
-
-    .action {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: var(--accent);
-      color: #200f12;
-      font-size: 13px;
-      font-weight: 700;
-      transition: opacity .2s;
-    }
-
-    .action:hover { opacity: .85; }
-
-    .action.secondary {
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text);
-    }
-
-    .empty {
-      display: none;
-      padding: 38px 20px;
-      border: 1px dashed var(--line);
-      border-radius: 16px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .notice {
-      margin-top: 28px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .notice strong { color: var(--text); }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 25px 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    @media (max-width: 850px) {
-      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 560px) {
-      .container { width: min(100% - 28px, 1100px); }
-      .hero { padding-top: 54px; }
-      h1 { letter-spacing: -1.8px; }
-      .grid { grid-template-columns: 1fr; }
-      .card { min-height: 315px; }
-      .section-heading { align-items: start; flex-direction: column; }
-      .nav { min-height: 65px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
-  <header>
-    <div class="container nav">
-      <a class="logo" href="./">MISCHENKO <span>EDU</span></a>
-      <a class="nav-link" href="#catalog">Библиотека пособий ↗</a>
-    </div>
+  <div class="page-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Mischenko Edu — главная">
+      <span class="brand-mark">
+        <span></span><span></span><span></span><span></span>
+      </span>
+      <span class="brand-name">
+        Mischenko <span>Edu</span>
+        <small>БИБЛИОТЕКА МАТЕРИАЛОВ</small>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Основная навигация">
+      <a class="nav-link active" href="#catalog">Каталог</a>
+      <a class="nav-link" href="#directions">Направления</a>
+      <a class="nav-contact" href="https://t.me/mischenko_edu" target="_blank" rel="noopener noreferrer">
+        Связаться <span>↗</span>
+      </a>
+    </nav>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="eyebrow"><span class="dot"></span> Учиться понятнее</div>
-      <h1>Методическая<br><span>библиотека.</span></h1>
-      <p>
-        Пособия, шпаргалки и практические материалы для учёбы,
-        подготовки к экзаменам и освоения цифровых навыков.
-        Выбирайте направление и знакомьтесь с материалами.
-      </p>
-      <div class="stats">
-        <span class="stat">01 / Физика</span>
-        <span class="stat">02 / Информатика</span>
-        <span class="stat">03 / Математика</span>
-        <span class="stat">04 / Python</span>
-        <span class="stat">05 / Figma</span>
-        <span class="stat">06 / HTML/CSS</span>
-      </div>
-    </section>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          KNOWLEDGE LIBRARY <span class="eyebrow-number">/ 001</span>
+        </div>
 
-    <section class="catalog" id="catalog">
-      <div class="section-heading">
-        <div>
-          <h2>Каталог пособий</h2>
-          <p>Выберите направление или найдите материал по названию.</p>
+        <h1 id="hero-title">
+          Учиться.<br>
+          Разбираться.<br>
+          <span class="accent-text">Создавать.</span>
+        </h1>
+
+        <p class="hero-description">
+          Учебные материалы, понятные объяснения и практика —
+          от школьных предметов до программирования и дизайна.
+        </p>
+
+        <a class="hero-link" href="#catalog">
+          Изучить каталог <span aria-hidden="true">↓</span>
+        </a>
+
+        <div class="hero-meta">
+          <span><i class="meta-square"></i> 06 направлений</span>
+          <span><i class="meta-circle"></i> Бесплатные и платные материалы</span>
         </div>
       </div>
 
-      <div class="toolbar" id="typeFilters">
-        <button class="filter active" data-type="all">Все материалы</button>
-        <button class="filter" data-type="free">Бесплатные</button>
-        <button class="filter" data-type="paid">Платные</button>
-      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-cross cross-one">+</div>
+        <div class="art-cross cross-two">×</div>
+        <div class="art-line line-one"></div>
+        <div class="art-line line-two"></div>
 
-      <div class="toolbar" id="subjectFilters">
-        <button class="filter active" data-subject="all">Все направления</button>
-        <button class="filter" data-subject="physics">Физика</button>
-        <button class="filter" data-subject="informatics">Информатика</button>
-        <button class="filter" data-subject="math">Математика</button>
-        <button class="filter" data-subject="python">Python</button>
-        <button class="filter" data-subject="figma">Figma</button>
-        <button class="filter" data-subject="web">HTML/CSS</button>
-      </div>
+        <div class="art-card art-card-back">
+          <span>ME / 02</span>
+          <div class="art-mini-grid"></div>
+        </div>
 
-      <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="Например, ОГЭ, формулы, Python..."
-        aria-label="Поиск по пособиям"
-      >
-
-      <div class="grid" id="cards">
-
-        <article class="card" data-subject="physics" data-type="planned"
-          data-search="огэ физика подготовка экзамен">
-          <div class="cover">
-            <span class="cover-code">PHYSICS / EXAM</span>
-            <span class="cover-symbol">F = ma</span>
+        <div class="art-card art-card-front">
+          <span class="art-card-label">STUDY SYSTEM</span>
+          <div class="art-symbol">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">Физика</span>
-              <span class="tag">ОГЭ</span>
-              <span class="tag planned">Демо готовится</span>
+          <div class="art-card-bottom">
+            <span>MISCHENKO</span>
+            <span>EDU®</span>
+          </div>
+        </div>
+
+        <div class="art-coordinate coordinate-one">55° 45' N</div>
+        <div class="art-coordinate coordinate-two">LEARN / 2026</div>
+      </div>
+    </section>
+
+    <section class="direction-section" id="directions">
+      <div class="section-heading">
+        <div>
+          <span class="section-index">01 / НАВИГАЦИЯ</span>
+          <h2>Выбери направление</h2>
+        </div>
+        <span class="section-aside">ОТ ТЕОРИИ К ПРАКТИКЕ</span>
+      </div>
+
+      <div class="direction-grid">
+        <a class="direction-tile" href="#catalog" data-direction-link="physics">
+          <span class="direction-icon icon-physics">Φ</span>
+          <span class="direction-info">
+            <strong>Физика</strong>
+            <small>Формулы и задачи</small>
+          </span>
+          <span class="direction-arrow">↗</span>
+        </a>
+
+        <a class="direction-tile" href="#catalog" data-direction-link="informatics">
+          <span class="direction-icon icon-informatics">01</span>
+          <span class="direction-info">
+            <strong>Информатика</strong>
+            <small>Логика и алгоритмы</small>
+          </span>
+          <span class="direction-arrow">↗</span>
+        </a>
+
+        <a class="direction-tile" href="#catalog" data-direction-link="math">
+          <span class="direction-icon icon-math">∑</span>
+          <span class="direction-info">
+            <strong>Математика</strong>
+            <small>Правила и вычисления</small>
+          </span>
+          <span class="direction-arrow">↗</span>
+        </a>
+
+        <a class="direction-tile" href="#catalog" data-direction-link="python">
+          <span class="direction-icon icon-python">&lt;/&gt;</span>
+          <span class="direction-info">
+            <strong>Python</strong>
+            <small>Код и практика</small>
+          </span>
+          <span class="direction-arrow">↗</span>
+        </a>
+
+        <a class="direction-tile" href="#catalog" data-direction-link="figma">
+          <span class="direction-icon icon-figma">◈</span>
+          <span class="direction-info">
+            <strong>Figma</strong>
+            <small>Интерфейсы и дизайн</small>
+          </span>
+          <span class="direction-arrow">↗</span>
+        </a>
+
+        <a class="direction-tile" href="#catalog" data-direction-link="html">
+          <span class="direction-icon icon-html">{ }</span>
+          <span class="direction-info">
+            <strong>HTML / CSS</strong>
+            <small>Создание сайтов</small>
+          </span>
+          <span class="direction-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="section-heading catalog-heading">
+        <div>
+          <span class="section-index">02 / БИБЛИОТЕКА</span>
+          <h2>Материалы</h2>
+          <p class="section-description">
+            Выбирай тему, открывай материал и переходи к практике.
+          </p>
+        </div>
+
+        <div class="catalog-total">
+          <strong id="visibleCount">36</strong>
+          <span>МАТЕРИАЛОВ<br>В КАТАЛОГЕ</span>
+        </div>
+      </div>
+
+      <div class="filter-bar" aria-label="Фильтры каталога">
+        <div class="filter-control">
+          <label for="directionFilter">Направление</label>
+          <select id="directionFilter">
+            <option value="all">Все направления</option>
+            <option value="physics">Физика</option>
+            <option value="informatics">Информатика</option>
+            <option value="math">Математика</option>
+            <option value="python">Python</option>
+            <option value="figma">Figma</option>
+            <option value="html">HTML / CSS</option>
+          </select>
+        </div>
+
+        <span class="filter-divider" aria-hidden="true"></span>
+
+        <div class="filter-control">
+          <label for="accessFilter">Доступ</label>
+          <select id="accessFilter">
+            <option value="all">Все материалы</option>
+            <option value="free">Бесплатно</option>
+            <option value="paid">Платно</option>
+          </select>
+        </div>
+
+        <button class="reset-filters" id="resetFilters" type="button">
+          Сбросить <span>↺</span>
+        </button>
+      </div>
+
+      <div class="catalog-status">
+        <span id="filterSummary">Все направления · Все материалы</span>
+        <span class="status-legend">
+          <span><i class="legend-free"></i> Бесплатно</span>
+          <span><i class="legend-paid"></i> Платно</span>
+        </span>
+      </div>
+
+      <div class="catalog-grid" id="catalogGrid">
+
+        <!-- ФИЗИКА -->
+
+        <a class="material-card" href="materials/physics/units/index.html"
+           data-category="physics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ФИЗИКА / 01</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-physics">
+            <span class="visual-formula">v = s / t</span>
+            <span class="visual-orbit"></span>
+            <span class="visual-coordinate">01—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Физические величины и единицы</h3>
+            <p>Основные величины, обозначения и единицы измерения.</p>
+            <div class="card-bottom">
+              <span class="material-type">Шпаргалка</span>
+              <span class="card-arrow">↗</span>
             </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/physics/formulas/index.html"
+           data-category="physics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ФИЗИКА / 02</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-physics">
+            <span class="visual-formula">F = ma</span>
+            <span class="visual-orbit"></span>
+            <span class="visual-coordinate">02—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Главные формулы физики</h3>
+            <p>Подборка базовых формул с пояснениями обозначений.</p>
+            <div class="card-bottom">
+              <span class="material-type">Справочник</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/physics/units-conversion/index.html"
+           data-category="physics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ФИЗИКА / 03</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-physics">
+            <span class="visual-formula">км/ч → м/с</span>
+            <span class="visual-orbit"></span>
+            <span class="visual-coordinate">03—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Перевод единиц измерения</h3>
+            <p>Как переводить величины и не терять нули.</p>
+            <div class="card-bottom">
+              <span class="material-type">Практикум</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/physics/mini-test/index.html"
+           data-category="physics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ФИЗИКА / 04</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-physics">
+            <span class="visual-formula">TEST_01</span>
+            <span class="visual-orbit"></span>
+            <span class="visual-coordinate">04—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Мини-тест по физике</h3>
+            <p>Проверь понимание величин, формул и единиц.</p>
+            <div class="card-bottom">
+              <span class="material-type">Тест с ответами</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/physics-oge/index.html"
+           data-category="physics" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">ФИЗИКА / 05</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-physics visual-featured">
+            <span class="visual-formula">ОГЭ / PHY</span>
+            <span class="visual-orbit"></span>
+            <span class="visual-coordinate">PRODUCT_01</span>
+          </div>
+          <div class="card-content">
             <h3>Подготовка к ОГЭ по физике</h3>
-            <p>Методическое пособие для системной подготовки к экзамену. Содержание и демоверсия будут добавлены отдельно.</p>
+            <p>Системная подготовка: теория, алгоритмы и задания.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="physics-oge">Ознакомиться →</a>
+              <span class="material-type">Пособие · демо</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="card" data-subject="physics" data-type="free"
-          data-search="физика формулы единицы измерения">
-          <div class="cover mint">
-            <span class="cover-code">PHYSICS / NOTES</span>
-            <span class="cover-symbol">Σ F</span>
+        <a class="material-card" href="demos/physics/problem-solving/index.html"
+           data-category="physics" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">ФИЗИКА / 06</span>
+            <span class="access-badge paid">ПЛАТНО</span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">Физика</span>
-              <span class="tag free">Бесплатный материал</span>
-            </div>
-            <h3>Формулы и единицы измерения</h3>
-            <p>Планируемая краткая памятка для повторения основных формул и физических величин.</p>
+          <div class="card-visual visual-physics">
+            <span class="visual-formula">SOLVE →</span>
+            <span class="visual-orbit"></span>
+            <span class="visual-coordinate">PRODUCT_02</span>
+          </div>
+          <div class="card-content">
+            <h3>Как решать задачи по физике</h3>
+            <p>Пошаговый алгоритм: условие, формула, решение.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="physics-formulas">Ознакомиться →</a>
+              <span class="material-type">Практикум · демо</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="card" data-subject="informatics" data-type="free"
-          data-search="информатика системы счисления двоичная">
-          <div class="cover lavender">
-            <span class="cover-code">CS / NUMBER SYSTEMS</span>
-            <span class="cover-symbol">10101</span>
+        <!-- ИНФОРМАТИКА -->
+
+        <a class="material-card" href="materials/informatics/number-systems/index.html"
+           data-category="informatics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ИНФОРМАТИКА / 01</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">Информатика</span>
-              <span class="tag free">Бесплатный материал</span>
-            </div>
+          <div class="card-visual visual-informatics">
+            <span class="visual-formula">101101₂</span>
+            <span class="visual-binary">0 1 0 1 1 0 1</span>
+            <span class="visual-coordinate">01—04</span>
+          </div>
+          <div class="card-content">
             <h3>Системы счисления</h3>
-            <p>Планируемая памятка с объяснениями и примерами перевода чисел.</p>
+            <p>Двоичная, десятичная и перевод чисел между системами.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="number-systems">Ознакомиться →</a>
+              <span class="material-type">Конспект + примеры</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="card" data-subject="math" data-type="free"
-          data-search="математика формулы дроби проценты">
-          <div class="cover peach">
-            <span class="cover-code">MATH / FORMULAS</span>
-            <span class="cover-symbol">x²</span>
+        <a class="material-card" href="materials/informatics/information-units/index.html"
+           data-category="informatics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ИНФОРМАТИКА / 02</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">Математика</span>
-              <span class="tag free">Бесплатный материал</span>
-            </div>
-            <h3>Математические формулы</h3>
-            <p>Планируемая шпаргалка для повторения основных формул и правил.</p>
+          <div class="card-visual visual-informatics">
+            <span class="visual-formula">1 KB = ?</span>
+            <span class="visual-binary">BIT / BYTE / MB</span>
+            <span class="visual-coordinate">02—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Единицы информации</h3>
+            <p>Биты, байты, объём данных и перевод единиц.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="math-formulas">Ознакомиться →</a>
+              <span class="material-type">Шпаргалка</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="card" data-subject="python" data-type="free"
-          data-search="python программирование новичок первые шаги">
-          <div class="cover mint">
-            <span class="cover-code">PYTHON / START</span>
-            <span class="cover-symbol">{ }</span>
+        <a class="material-card" href="materials/informatics/logic/index.html"
+           data-category="informatics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ИНФОРМАТИКА / 03</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag free">Бесплатный материал</span>
-            </div>
-            <h3>Python: первые шаги</h3>
-            <p>Планируемый вводный материал с первыми командами и простыми задачами.</p>
+          <div class="card-visual visual-informatics">
+            <span class="visual-formula">A ∧ B</span>
+            <span class="visual-binary">AND / OR / NOT</span>
+            <span class="visual-coordinate">03—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Логические операции</h3>
+            <p>Таблицы истинности и основные логические связки.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="python-from-zero">Ознакомиться →</a>
+              <span class="material-type">Конспект + задачи</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="card" data-subject="figma" data-type="free"
-          data-search="figma дизайн интерфейс макет">
-          <div class="cover lavender">
-            <span class="cover-code">FIGMA / DESIGN</span>
-            <span class="cover-symbol">◈</span>
+        <a class="material-card" href="materials/informatics/algorithms/index.html"
+           data-category="informatics" data-access="free">
+          <div class="card-top">
+            <span class="card-category">ИНФОРМАТИКА / 04</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">Figma</span>
-              <span class="tag free">Бесплатный материал</span>
-            </div>
-            <h3>Знакомство с Figma</h3>
-            <p>Планируемый стартовый материал по интерфейсу и созданию первого макета.</p>
+          <div class="card-visual visual-informatics">
+            <span class="visual-formula">START → END</span>
+            <span class="visual-binary">IF / ELSE / LOOP</span>
+            <span class="visual-coordinate">04—04</span>
+          </div>
+          <div class="card-content">
+            <h3>Алгоритмы и блок-схемы</h3>
+            <p>Ветвления, циклы и способы записи алгоритмов.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="figma-basics">Ознакомиться →</a>
+              <span class="material-type">Справочник</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="card" data-subject="web" data-type="free"
-          data-search="html css сайт веб разработка">
-          <div class="cover peach">
-            <span class="cover-code">WEB / FIRST SITE</span>
-            <span class="cover-symbol">&lt;/&gt;</span>
+        <a class="material-card" href="demos/informatics-oge/index.html"
+           data-category="informatics" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">ИНФОРМАТИКА / 05</span>
+            <span class="access-badge paid">ПЛАТНО</span>
           </div>
-          <div class="card-body">
-            <div class="tags">
-              <span class="tag">HTML/CSS</span>
-              <span class="tag free">Бесплатный материал</span>
-            </div>
-            <h3>Создаём первый сайт</h3>
-            <p>Планируемый материал по базовым HTML-тегам и оформлению страницы с помощью CSS.</p>
+          <div class="card-visual visual-informatics visual-featured">
+            <span class="visual-formula">ОГЭ / INF</span>
+            <span class="visual-binary">TASK → METHOD → RESULT</span>
+            <span class="visual-coordinate">PRODUCT_03</span>
+          </div>
+          <div class="card-content">
+            <h3>Подготовка к ОГЭ по информатике</h3>
+            <p>Темы экзамена, методы решения и тренировочные задания.</p>
             <div class="card-bottom">
-              <a class="action secondary" href="#" data-demo="html-css-first-site">Ознакомиться →</a>
+              <span class="material-type">Пособие · демо</span>
+              <span class="card-arrow">↗</span>
             </div>
           </div>
-        </article>
+        </a>
+
+        <a class="material-card" href="demos/informatics-tasks/index.html"
+           data-category="informatics" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">ИНФОРМАТИКА / 06</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-informatics">
+            <span class="visual-formula">TASK LAB</span>
+            <span class="visual-binary">01 / 02 / 03</span>
+            <span class="visual-coordinate">PRODUCT_04</span>
+          </div>
+          <div class="card-content">
+            <h3>Практикум по информатике</h3>
+            <p>Подборка задач с алгоритмами решения и разборами.</p>
+            <div class="card-bottom">
+              <span class="material-type">Практикум · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- МАТЕМАТИКА -->
+
+        <a class="material-card" href="materials/math/formulas/index.html"
+           data-category="math" data-access="free">
+          <div class="card-top">
+            <span class="card-category">МАТЕМАТИКА / 01</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-math">
+            <span class="visual-formula">a² + b²</span>
+            <span class="visual-coordinate">FORMULA_01</span>
+          </div>
+          <div class="card-content">
+            <h3>Основные формулы математики</h3>
+            <p>Формулы сокращённого умножения и базовые правила.</p>
+            <div class="card-bottom">
+              <span class="material-type">Шпаргалка</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/math/fractions/index.html"
+           data-category="math" data-access="free">
+          <div class="card-top">
+            <span class="card-category">МАТЕМАТИКА / 02</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-math">
+            <span class="visual-formula">¾ + ⅔</span>
+            <span class="visual-coordinate">PRACTICE_02</span>
+          </div>
+          <div class="card-content">
+            <h3>Дроби без путаницы</h3>
+            <p>Сокращение, сравнение и арифметические действия с дробями.</p>
+            <div class="card-bottom">
+              <span class="material-type">Конспект + практика</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/math/percentages/index.html"
+           data-category="math" data-access="free">
+          <div class="card-top">
+            <span class="card-category">МАТЕМАТИКА / 03</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-math">
+            <span class="visual-formula">25% = ¼</span>
+            <span class="visual-coordinate">PRACTICE_03</span>
+          </div>
+          <div class="card-content">
+            <h3>Проценты и пропорции</h3>
+            <p>Как находить процент от числа и решать задачи.</p>
+            <div class="card-bottom">
+              <span class="material-type">Практикум</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/math/geometry/index.html"
+           data-category="math" data-access="free">
+          <div class="card-top">
+            <span class="card-category">МАТЕМАТИКА / 04</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-math">
+            <span class="visual-formula">S = a · b</span>
+            <span class="visual-coordinate">GEOMETRY_04</span>
+          </div>
+          <div class="card-content">
+            <h3>Площади и периметры</h3>
+            <p>Формулы фигур, обозначения и разобранные примеры.</p>
+            <div class="card-bottom">
+              <span class="material-type">Справочник</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/math-exam/index.html"
+           data-category="math" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">МАТЕМАТИКА / 05</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-math visual-featured">
+            <span class="visual-formula">EXAM / MATH</span>
+            <span class="visual-coordinate">PRODUCT_05</span>
+          </div>
+          <div class="card-content">
+            <h3>Подготовка к экзамену по математике</h3>
+            <p>Систематизация тем, типовые задачи и способы решения.</p>
+            <div class="card-bottom">
+              <span class="material-type">Пособие · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/math-practice/index.html"
+           data-category="math" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">МАТЕМАТИКА / 06</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-math">
+            <span class="visual-formula">MATH LAB</span>
+            <span class="visual-coordinate">PRODUCT_06</span>
+          </div>
+          <div class="card-content">
+            <h3>Сборник задач с решениями</h3>
+            <p>Тренировка навыков с пошаговыми объяснениями.</p>
+            <div class="card-bottom">
+              <span class="material-type">Сборник · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- PYTHON -->
+
+        <a class="material-card" href="materials/python/first-steps/index.html"
+           data-category="python" data-access="free">
+          <div class="card-top">
+            <span class="card-category">PYTHON / 01</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-python">
+            <span class="code-line"><i>01</i> print("Hello!")</span>
+            <span class="code-line"><i>02</i> # first steps</span>
+            <span class="visual-coordinate">PY / START</span>
+          </div>
+          <div class="card-content">
+            <h3>Первый шаг в Python</h3>
+            <p>Как устроена программа и как запустить первый код.</p>
+            <div class="card-bottom">
+              <span class="material-type">Урок для начинающих</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/python/variables/index.html"
+           data-category="python" data-access="free">
+          <div class="card-top">
+            <span class="card-category">PYTHON / 02</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-python">
+            <span class="code-line"><i>01</i> name = "Anna"</span>
+            <span class="code-line"><i>02</i> age = 15</span>
+            <span class="visual-coordinate">PY / VARS</span>
+          </div>
+          <div class="card-content">
+            <h3>Переменные и типы данных</h3>
+            <p>Числа, строки, присваивание и простые операции.</p>
+            <div class="card-bottom">
+              <span class="material-type">Конспект + код</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/python/input-output/index.html"
+           data-category="python" data-access="free">
+          <div class="card-top">
+            <span class="card-category">PYTHON / 03</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-python">
+            <span class="code-line"><i>01</i> input()</span>
+            <span class="code-line"><i>02</i> print()</span>
+            <span class="visual-coordinate">PY / IO</span>
+          </div>
+          <div class="card-content">
+            <h3>Ввод и вывод данных</h3>
+            <p>Получаем данные от пользователя и выводим результат.</p>
+            <div class="card-bottom">
+              <span class="material-type">Практика</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/python/conditions/index.html"
+           data-category="python" data-access="free">
+          <div class="card-top">
+            <span class="card-category">PYTHON / 04</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-python">
+            <span class="code-line"><i>01</i> if score &gt; 5:</span>
+            <span class="code-line"><i>02</i> &nbsp;&nbsp;print(...)</span>
+            <span class="visual-coordinate">PY / IF</span>
+          </div>
+          <div class="card-content">
+            <h3>Условия и ветвления</h3>
+            <p>if, elif, else и логика принятия решений.</p>
+            <div class="card-bottom">
+              <span class="material-type">Конспект + задачи</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/python-workbook/index.html"
+           data-category="python" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">PYTHON / 05</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-python visual-featured">
+            <span class="code-line"><i>01</i> LEARN()</span>
+            <span class="code-line"><i>02</i> PRACTICE()</span>
+            <span class="visual-coordinate">PRODUCT_07</span>
+          </div>
+          <div class="card-content">
+            <h3>Python с нуля: рабочая тетрадь</h3>
+            <p>Последовательные темы, задания и проверка результата.</p>
+            <div class="card-bottom">
+              <span class="material-type">Тетрадь · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/python-tasks/index.html"
+           data-category="python" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">PYTHON / 06</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-python">
+            <span class="code-line"><i>01</i> solve(task)</span>
+            <span class="code-line"><i>02</i> # explain</span>
+            <span class="visual-coordinate">PRODUCT_08</span>
+          </div>
+          <div class="card-content">
+            <h3>Сборник задач по Python</h3>
+            <p>Задачи по темам с подсказками и разборами решений.</p>
+            <div class="card-bottom">
+              <span class="material-type">Сборник · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- FIGMA -->
+
+        <a class="material-card" href="materials/figma/interface-terms/index.html"
+           data-category="figma" data-access="free">
+          <div class="card-top">
+            <span class="card-category">FIGMA / 01</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-figma">
+            <span class="figma-shape shape-one"></span>
+            <span class="figma-shape shape-two"></span>
+            <span class="figma-shape shape-three"></span>
+            <span class="figma-shape shape-four"></span>
+            <span class="visual-coordinate">DESIGN / 01</span>
+          </div>
+          <div class="card-content">
+            <h3>Основные термины дизайна</h3>
+            <p>Фрейм, компонент, слой, автолейаут и другие понятия.</p>
+            <div class="card-bottom">
+              <span class="material-type">Справочник</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/figma/shortcuts/index.html"
+           data-category="figma" data-access="free">
+          <div class="card-top">
+            <span class="card-category">FIGMA / 02</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-figma">
+            <span class="shortcut-key">Ctrl</span>
+            <span class="shortcut-plus">+</span>
+            <span class="shortcut-key">D</span>
+            <span class="visual-coordinate">SHORTCUTS</span>
+          </div>
+          <div class="card-content">
+            <h3>Горячие клавиши Figma</h3>
+            <p>Команды для быстрого создания и редактирования макетов.</p>
+            <div class="card-bottom">
+              <span class="material-type">Шпаргалка</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/figma/layout-checklist/index.html"
+           data-category="figma" data-access="free">
+          <div class="card-top">
+            <span class="card-category">FIGMA / 03</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-figma">
+            <span class="layout-box"></span>
+            <span class="layout-box layout-box-small"></span>
+            <span class="visual-coordinate">LAYOUT / 03</span>
+          </div>
+          <div class="card-content">
+            <h3>Чек-лист хорошего макета</h3>
+            <p>Отступы, сетка, контраст, выравнивание и иерархия.</p>
+            <div class="card-bottom">
+              <span class="material-type">Чек-лист</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/figma/first-layout/index.html"
+           data-category="figma" data-access="free">
+          <div class="card-top">
+            <span class="card-category">FIGMA / 04</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-figma">
+            <span class="layout-box layout-box-large"></span>
+            <span class="visual-coordinate">FIRST DESIGN</span>
+          </div>
+          <div class="card-content">
+            <h3>Первый макет интерфейса</h3>
+            <p>Из каких элементов состоит простой экран приложения.</p>
+            <div class="card-bottom">
+              <span class="material-type">Мини-урок</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/figma-ui-kit/index.html"
+           data-category="figma" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">FIGMA / 05</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-figma visual-featured">
+            <span class="ui-kit-label">UI KIT</span>
+            <span class="figma-shape shape-one"></span>
+            <span class="figma-shape shape-three"></span>
+            <span class="visual-coordinate">PRODUCT_09</span>
+          </div>
+          <div class="card-content">
+            <h3>UI-kit: набор элементов интерфейса</h3>
+            <p>Система компонентов для аккуратных и единых макетов.</p>
+            <div class="card-bottom">
+              <span class="material-type">Набор · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/figma-practice/index.html"
+           data-category="figma" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">FIGMA / 06</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-figma">
+            <span class="layout-box"></span>
+            <span class="layout-box layout-box-small"></span>
+            <span class="visual-coordinate">PRODUCT_10</span>
+          </div>
+          <div class="card-content">
+            <h3>Практикум по Figma</h3>
+            <p>Задания на композицию, сетки и создание интерфейсов.</p>
+            <div class="card-bottom">
+              <span class="material-type">Практикум · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- HTML / CSS -->
+
+        <a class="material-card" href="materials/html/tags/index.html"
+           data-category="html" data-access="free">
+          <div class="card-top">
+            <span class="card-category">HTML / CSS / 01</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-html">
+            <span class="html-code">&lt;h1&gt;Hello&lt;/h1&gt;</span>
+            <span class="visual-coordinate">HTML / TAGS</span>
+          </div>
+          <div class="card-content">
+            <h3>Основные HTML-теги</h3>
+            <p>Заголовки, абзацы, ссылки, изображения и списки.</p>
+            <div class="card-bottom">
+              <span class="material-type">Справочник</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/html/css-basics/index.html"
+           data-category="html" data-access="free">
+          <div class="card-top">
+            <span class="card-category">HTML / CSS / 02</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-html">
+            <span class="html-code">color: #ff6b6b;</span>
+            <span class="visual-coordinate">CSS / STYLE</span>
+          </div>
+          <div class="card-content">
+            <h3>CSS: основы оформления</h3>
+            <p>Цвета, шрифты, размеры, отступы и границы.</p>
+            <div class="card-bottom">
+              <span class="material-type">Конспект + примеры</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/html/page-template/index.html"
+           data-category="html" data-access="free">
+          <div class="card-top">
+            <span class="card-category">HTML / CSS / 03</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-html">
+            <span class="html-code">&lt;html&gt; ...</span>
+            <span class="visual-coordinate">PAGE / BASE</span>
+          </div>
+          <div class="card-content">
+            <h3>Шаблон первой веб-страницы</h3>
+            <p>Базовая структура HTML-документа с пояснениями.</p>
+            <div class="card-bottom">
+              <span class="material-type">Готовый шаблон</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="materials/html/card-layout/index.html"
+           data-category="html" data-access="free">
+          <div class="card-top">
+            <span class="card-category">HTML / CSS / 04</span>
+            <span class="access-badge free">БЕСПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-html">
+            <span class="html-card-demo"></span>
+            <span class="visual-coordinate">CARD / LAYOUT</span>
+          </div>
+          <div class="card-content">
+            <h3>Карточка сайта на HTML и CSS</h3>
+            <p>Создание простой карточки с адаптивным оформлением.</p>
+            <div class="card-bottom">
+              <span class="material-type">Практический урок</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/html-css-workbook/index.html"
+           data-category="html" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">HTML / CSS / 05</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-html visual-featured">
+            <span class="html-code">BUILD YOUR WEB</span>
+            <span class="visual-coordinate">PRODUCT_11</span>
+          </div>
+          <div class="card-content">
+            <h3>HTML/CSS с нуля</h3>
+            <p>Пошаговое изучение разметки, стилей и адаптивности.</p>
+            <div class="card-bottom">
+              <span class="material-type">Пособие · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="material-card" href="demos/website-project/index.html"
+           data-category="html" data-access="paid">
+          <div class="card-top">
+            <span class="card-category">HTML / CSS / 06</span>
+            <span class="access-badge paid">ПЛАТНО</span>
+          </div>
+          <div class="card-visual visual-html">
+            <span class="html-code">&lt;site /&gt;</span>
+            <span class="visual-coordinate">PRODUCT_12</span>
+          </div>
+          <div class="card-content">
+            <h3>Создай свой первый сайт</h3>
+            <p>Практический проект от структуры до готовой страницы.</p>
+            <div class="card-bottom">
+              <span class="material-type">Проект · демо</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </div>
+        </a>
 
       </div>
 
-      <div class="empty" id="empty">
-        По вашему запросу пока ничего не найдено.
-        Попробуйте изменить фильтры.
+      <div class="empty-state" id="emptyState" hidden>
+        <span class="empty-symbol">∅</span>
+        <h3>Материалы не найдены</h3>
+        <p>Попробуй выбрать другое направление или тип доступа.</p>
+        <button class="reset-empty" id="resetEmpty" type="button">
+          Показать весь каталог ↗
+        </button>
       </div>
 
-      <div class="notice">
-        <strong>Библиотека пополняется.</strong>
-        Названия и описания бесплатных материалов сейчас являются планом.
-        Полные пособия, демоверсии и платный каталог будут добавляться по мере подготовки.
+      <div class="catalog-end">
+        <span class="end-line"></span>
+        <span>КОНЕЦ СПИСКА</span>
+        <span class="end-line"></span>
       </div>
+    </section>
+
+    <section class="about-strip">
+      <div class="about-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="about-copy">
+        <span class="section-index">03 / О ПРОЕКТЕ</span>
+        <h2>Знания — в понятной форме.</h2>
+        <p>
+          Mischenko Edu — библиотека учебных материалов,
+          которая помогает разбираться в сложном шаг за шагом.
+        </p>
+      </div>
+      <a class="about-link" href="https://t.me/mischenko_edu"
+         target="_blank" rel="noopener noreferrer">
+        Задать вопрос <span>↗</span>
+      </a>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <span>© Mischenko Edu</span>
-      <span>Методические материалы для учёбы и практики</span>
-    </div>
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html">Mischenko <span>Edu</span></a>
+    <span class="footer-note">Учиться. Разбираться. Создавать.</span>
+    <span class="footer-copy">© 2026 MISCHENKO EDU</span>
   </footer>
-
-  <script>
-    const cards = [...document.querySelectorAll(".card")];
-    const typeButtons = [...document.querySelectorAll("[data-type]")];
-    const subjectButtons = [...document.querySelectorAll("[data-subject]")];
-    const search = document.getElementById("search");
-    const empty = document.getElementById("empty");
-
-    let activeType = "all";
-    let activeSubject = "all";
-
-    function updateCatalog() {
-      const query = search.value.trim().toLowerCase();
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const type = card.dataset.type;
-        const subject = card.dataset.subject;
-        const text = (
-          card.innerText + " " + (card.dataset.search || "")
-        ).toLowerCase();
-
-        const matchesType =
-          activeType === "all" ||
-          (activeType === "free" && type === "free") ||
-          (activeType === "paid" && type === "paid");
-
-        const matchesSubject =
-          activeSubject === "all" || subject === activeSubject;
-
-        const matchesSearch = text.includes(query);
-        const visible = matchesType && matchesSubject && matchesSearch;
-
-        card.style.display = visible ? "flex" : "none";
-        if (visible) visibleCount++;
-      });
-
-      empty.style.display = visibleCount ? "none" : "block";
-    }
-
-    typeButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        activeType = button.dataset.type;
-        typeButtons.forEach(item =>
-          item.classList.toggle("active", item === button)
-        );
-        updateCatalog();
-      });
-    });
-
-    subjectButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        activeSubject = button.dataset.subject;
-        subjectButtons.forEach(item =>
-          item.classList.toggle("active", item === button)
-        );
-        updateCatalog();
-      });
-    });
-
-    search.addEventListener("input", updateCatalog);
-
-    document.querySelectorAll("[data-demo]").forEach(link => {
-      link.addEventListener("click", event => {
-        event.preventDefault();
-        alert(
-          "Демоверсия этого пособия пока готовится. " +
-          "На следующем этапе мы создадим отдельную страницу материала."
-        );
-      });
-    });
-
-    updateCatalog();
-  </script>
 </body>
 </html>
