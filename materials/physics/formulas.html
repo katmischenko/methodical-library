@@ -1,0 +1,1033 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0a0f">
+  <meta name="description" content="Бесплатный справочник по физике: формулы, единицы измерения, примеры решения задач и проверочный тест. Mischenko Edu.">
+  <title>Физика: формулы и величины — Mischenko Edu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0c0a0f;
+      --panel: #15121a;
+      --panel-light: #1c1822;
+      --text: #f5f1f7;
+      --muted: #a49baa;
+      --line: #302938;
+      --coral: #ff7777;
+      --mint: #9de6cc;
+      --lavender: #c6b4ff;
+      --peach: #ffc8a9;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 90% 0%, #39213b55, transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input { font: inherit; }
+
+    button { cursor: pointer; }
+
+    .wrap {
+      width: min(1060px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: #0c0a0fe8;
+    }
+
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--coral);
+      color: #211017;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 15px;
+      transform: rotate(-5deg);
+    }
+
+    .back {
+      color: var(--muted);
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .back:hover { color: var(--text); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin: 34px 0 26px;
+      padding: clamp(26px, 5vw, 54px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(125deg, #211823, #15121a 65%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: 7%;
+      top: 15%;
+      border: 1px solid #ff77774d;
+      border-radius: 34px;
+      transform: rotate(28deg);
+    }
+
+    .hero::after {
+      content: "F = ma";
+      position: absolute;
+      right: 8%;
+      top: 35%;
+      color: #ffc8a9;
+      font: 600 clamp(18px, 3vw, 27px) "JetBrains Mono", monospace;
+      transform: rotate(8deg);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--mint);
+      font: 500 11px "JetBrains Mono", monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--mint);
+      border-radius: 50%;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 17px 0 15px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 550px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-tags {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 25px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #0c0a0f88;
+      color: #ddd4e4;
+      font-size: 11px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 215px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      padding-bottom: 70px;
+    }
+
+    aside {
+      position: sticky;
+      top: 20px;
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .side-title {
+      margin: 0 0 13px;
+      color: var(--muted);
+      font: 500 10px "JetBrains Mono", monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .side-nav {
+      display: grid;
+      gap: 5px;
+    }
+
+    .side-nav a {
+      padding: 9px 10px;
+      border-radius: 9px;
+      color: #c8bdcf;
+      font-size: 12px;
+      transition: background .2s, color .2s;
+    }
+
+    .side-nav a:hover {
+      background: var(--panel-light);
+      color: var(--text);
+    }
+
+    .side-note {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    section { scroll-margin-top: 20px; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin: 0 0 15px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 29px);
+      letter-spacing: -.8px;
+      line-height: 1.25;
+    }
+
+    .section-number {
+      color: var(--coral);
+      font: 500 12px "JetBrains Mono", monospace;
+    }
+
+    .intro {
+      margin: 7px 0 19px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .formula-card {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      transition: border-color .2s, transform .2s;
+    }
+
+    .formula-card:hover {
+      border-color: #66536f;
+      transform: translateY(-2px);
+    }
+
+    .formula-label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .formula {
+      margin: 12px 0;
+      color: var(--mint);
+      font: 600 clamp(19px, 2.6vw, 25px) "JetBrains Mono", monospace;
+      letter-spacing: -.7px;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-card p {
+      margin: 0;
+      color: #d0c6d6;
+      font-size: 12px;
+    }
+
+    .formula-card .unit {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 4px 7px;
+      border-radius: 6px;
+      background: #c6b4ff16;
+      color: var(--lavender);
+      font: 11px "JetBrains Mono", monospace;
+    }
+
+    .info-box {
+      margin: 17px 0 28px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--peach);
+      border-radius: 0 12px 12px 0;
+      background: #ffc8a90d;
+      color: #d8cbd9;
+      font-size: 12px;
+    }
+
+    .info-box strong { color: var(--peach); }
+
+    .content-section { margin-top: 38px; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    th {
+      background: var(--panel-light);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    td:first-child {
+      color: var(--mint);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .example {
+      margin-top: 13px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+    }
+
+    .example-label {
+      color: var(--lavender);
+      font: 500 10px "JetBrains Mono", monospace;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+    }
+
+    .example h3 {
+      margin: 9px 0;
+      font-size: 16px;
+    }
+
+    .example p {
+      margin: 7px 0;
+      color: #d0c6d6;
+      font-size: 13px;
+    }
+
+    .solution {
+      margin-top: 13px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #9de6cc0d;
+      color: var(--mint);
+      font: 12px/1.8 "JetBrains Mono", monospace;
+    }
+
+    .test {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .question {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .question:first-child { padding-top: 0; }
+
+    .question:last-of-type { border-bottom: 0; }
+
+    .question h3 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin: 8px 0;
+      color: #d2c8d8;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .option input {
+      margin-top: 4px;
+      accent-color: var(--coral);
+    }
+
+    .primary-button {
+      margin-top: 15px;
+      padding: 12px 17px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--coral);
+      color: #241219;
+      font-size: 12px;
+      font-weight: 700;
+      transition: opacity .2s;
+    }
+
+    .primary-button:hover { opacity: .86; }
+
+    .result {
+      margin-top: 14px;
+      padding: 13px;
+      border-radius: 10px;
+      background: var(--panel-light);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .result:empty { display: none; }
+
+    .result strong { color: var(--mint); }
+
+    .mistakes {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--panel);
+    }
+
+    .checklist label {
+      display: flex;
+      gap: 10px;
+      color: #d4cbd9;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .checklist input { accent-color: var(--mint); }
+
+    .finish {
+      margin-top: 30px;
+      padding: 22px;
+      border: 1px solid #9de6cc35;
+      border-radius: 18px;
+      background: #9de6cc08;
+    }
+
+    .finish h2 { font-size: 20px; }
+
+    .finish p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer-inner a { color: var(--coral); }
+
+    @media (max-width: 720px) {
+      .hero::before, .hero::after { opacity: .22; }
+      .layout { grid-template-columns: 1fr; gap: 22px; }
+      aside { position: static; }
+      .side-nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .side-nav a { background: var(--panel-light); }
+      .side-note { display: none; }
+    }
+
+    @media (max-width: 460px) {
+      .wrap { width: calc(100% - 24px); }
+      .topbar { min-height: 64px; }
+      .back { font-size: 11px; }
+      .hero { margin-top: 20px; padding: 25px 20px; }
+      h1 { letter-spacing: -1.2px; }
+      .formula-grid { grid-template-columns: 1fr; }
+      .formula-card { padding: 16px; }
+      .test { padding: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="../../index.html" aria-label="Mischenko Edu — каталог">
+        <span class="brand-mark">ME</span>
+        <span>Mischenko Edu</span>
+      </a>
+      <a class="back" href="../../index.html">← К каталогу</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <span class="eyebrow">Бесплатный материал · Физика</span>
+      <h1>Формулы, которые стоит знать</h1>
+      <p>
+        Краткий справочник по основным величинам механики, давления,
+        работы и мощности. Разбирай формулы, смотри примеры и проверь себя
+        в конце.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Теория</span>
+        <span class="tag">Примеры решений</span>
+        <span class="tag">Тест с ответами</span>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside>
+        <p class="side-title">Содержание</p>
+        <nav class="side-nav" aria-label="Навигация по материалу">
+          <a href="#mechanics">01 · Механика</a>
+          <a href="#pressure">02 · Давление</a>
+          <a href="#work">03 · Работа и мощность</a>
+          <a href="#units">04 · Единицы</a>
+          <a href="#examples">05 · Примеры</a>
+          <a href="#test">06 · Проверь себя</a>
+          <a href="#checklist">07 · Чек-лист</a>
+        </nav>
+        <div class="side-note">
+          Совет: сначала попробуй решить задачу самостоятельно и только
+          потом открывай решение.
+        </div>
+      </aside>
+
+      <div class="content">
+        <section id="mechanics">
+          <div class="section-head">
+            <h2>Механика</h2>
+            <span class="section-number">01 / 03</span>
+          </div>
+          <p class="intro">
+            Начни с движения, скорости и взаимодействия тел.
+            Эти формулы часто встречаются в школьных задачах.
+          </p>
+
+          <div class="formula-grid">
+            <article class="formula-card">
+              <div class="formula-label">Равномерное движение</div>
+              <div class="formula">v = s / t</div>
+              <p>Скорость равна пройденному пути, делённому на время.</p>
+              <span class="unit">м/с</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Путь при постоянной скорости</div>
+              <div class="formula">s = vt</div>
+              <p>Чтобы найти путь, умножь скорость на время движения.</p>
+              <span class="unit">м</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Средняя скорость</div>
+              <div class="formula">vср = sобщ / tобщ</div>
+              <p>Весь пройденный путь раздели на всё время движения.</p>
+              <span class="unit">м/с</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Плотность вещества</div>
+              <div class="formula">ρ = m / V</div>
+              <p>Масса тела, делённая на его объём.</p>
+              <span class="unit">кг/м³</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Сила тяжести у поверхности Земли</div>
+              <div class="formula">Fтяж = mg</div>
+              <p>m — масса тела, g ≈ 9,8 Н/кг. В школьных задачах часто берут 10 Н/кг.</p>
+              <span class="unit">Н</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Второй закон Ньютона</div>
+              <div class="formula">F = ma</div>
+              <p>Равнодействующая сила равна произведению массы на ускорение.</p>
+              <span class="unit">Н</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Сила упругости · закон Гука</div>
+              <div class="formula">Fупр = kx</div>
+              <p>k — жёсткость пружины, x — модуль её деформации. Сила направлена против деформации.</p>
+              <span class="unit">Н</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Сила трения скольжения</div>
+              <div class="formula">Fтр = μN</div>
+              <p>μ — коэффициент трения, N — сила нормальной реакции опоры.</p>
+              <span class="unit">Н</span>
+            </article>
+          </div>
+
+          <div class="info-box">
+            <strong>Важно:</strong> формула должна соответствовать условию задачи.
+            Например, v = s/t применяют для средней скорости на рассматриваемом
+            участке, а при равноускоренном движении скорость может меняться.
+          </div>
+        </section>
+
+        <section class="content-section" id="pressure">
+          <div class="section-head">
+            <h2>Давление</h2>
+            <span class="section-number">02 / 03</span>
+          </div>
+          <p class="intro">
+            Здесь важно не путать силу, площадь и плотность.
+          </p>
+
+          <div class="formula-grid">
+            <article class="formula-card">
+              <div class="formula-label">Давление твёрдого тела</div>
+              <div class="formula">p = F / S</div>
+              <p>Сила, действующая перпендикулярно поверхности, делённая на площадь.</p>
+              <span class="unit">Па = Н/м²</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Давление жидкости</div>
+              <div class="formula">p = ρgh</div>
+              <p>ρ — плотность жидкости, g — ускорение свободного падения, h — глубина.</p>
+              <span class="unit">Па</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Архимедова сила</div>
+              <div class="formula">FА = ρж g Vпогр</div>
+              <p>Равна весу вытесненной жидкости или газа. Vпогр — объём погружённой части тела.</p>
+              <span class="unit">Н</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Вес тела в покое на опоре</div>
+              <div class="formula">P = mg</div>
+              <p>В простом случае покоя на горизонтальной опоре без дополнительных вертикальных сил.</p>
+              <span class="unit">Н</span>
+            </article>
+          </div>
+
+          <div class="info-box">
+            <strong>Запомни:</strong> чем меньше площадь опоры при одной и той же
+            силе, тем больше давление. Перед подстановкой чисел переведи площадь
+            в квадратные метры, если ответ нужен в паскалях.
+          </div>
+        </section>
+
+        <section class="content-section" id="work">
+          <div class="section-head">
+            <h2>Работа, мощность и энергия</h2>
+            <span class="section-number">03 / 03</span>
+          </div>
+          <p class="intro">
+            Эти величины помогают описывать передачу энергии и работу сил.
+          </p>
+
+          <div class="formula-grid">
+            <article class="formula-card">
+              <div class="formula-label">Механическая работа</div>
+              <div class="formula">A = Fs</div>
+              <p>Для постоянной силы, направленной вдоль перемещения.</p>
+              <span class="unit">Дж</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Мощность</div>
+              <div class="formula">N = A / t</div>
+              <p>Работа, выполненная за единицу времени.</p>
+              <span class="unit">Вт</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Потенциальная энергия</div>
+              <div class="formula">Eп = mgh</div>
+              <p>Энергия тела, поднятого на высоту h над выбранным уровнем.</p>
+              <span class="unit">Дж</span>
+            </article>
+
+            <article class="formula-card">
+              <div class="formula-label">Кинетическая энергия</div>
+              <div class="formula">Eк = mv² / 2</div>
+              <p>Энергия движущегося тела массой m со скоростью v.</p>
+              <span class="unit">Дж</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section" id="units">
+          <div class="section-head">
+            <h2>Единицы измерения</h2>
+          </div>
+          <p class="intro">
+            Перед решением проверь, в каких единицах даны величины.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Величина</th>
+                  <th>Обозначение</th>
+                  <th>Единица СИ</th>
+                  <th>Полезный перевод</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Путь</td>
+                  <td>s</td>
+                  <td>метр (м)</td>
+                  <td>1 км = 1000 м</td>
+                </tr>
+                <tr>
+                  <td>Время</td>
+                  <td>t</td>
+                  <td>секунда (с)</td>
+                  <td>1 ч = 3600 с</td>
+                </tr>
+                <tr>
+                  <td>Скорость</td>
+                  <td>v</td>
+                  <td>м/с</td>
+                  <td>1 м/с = 3,6 км/ч</td>
+                </tr>
+                <tr>
+                  <td>Масса</td>
+                  <td>m</td>
+                  <td>килограмм (кг)</td>
+                  <td>1 г = 0,001 кг</td>
+                </tr>
+                <tr>
+                  <td>Объём</td>
+                  <td>V</td>
+                  <td>м³</td>
+                  <td>1 л = 0,001 м³</td>
+                </tr>
+                <tr>
+                  <td>Сила</td>
+                  <td>F</td>
+                  <td>ньютон (Н)</td>
+                  <td>1 кН = 1000 Н</td>
+                </tr>
+                <tr>
+                  <td>Давление</td>
+                  <td>p</td>
+                  <td>паскаль (Па)</td>
+                  <td>1 кПа = 1000 Па</td>
+                </tr>
+                <tr>
+                  <td>Работа, энергия</td>
+                  <td>A, E</td>
+                  <td>джоуль (Дж)</td>
+                  <td>1 кДж = 1000 Дж</td>
+                </tr>
+                <tr>
+                  <td>Мощность</td>
+                  <td>N</td>
+                  <td>ватт (Вт)</td>
+                  <td>1 кВт = 1000 Вт</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box">
+            <strong>Перевод скорости:</strong> чтобы перевести км/ч в м/с,
+            раздели значение на 3,6. Чтобы перевести м/с в км/ч, умножь на 3,6.
+          </div>
+        </section>
+
+        <section class="content-section" id="examples">
+          <div class="section-head">
+            <h2>Разберём задачи</h2>
+          </div>
+          <p class="intro">
+            Смотри не только на ответ, но и на порядок решения.
+          </p>
+
+          <article class="example">
+            <div class="example-label">Пример 01 · Движение</div>
+            <h3>Автомобиль проехал 150 м за 10 с. Найди его среднюю скорость.</h3>
+            <p><strong>Дано:</strong> s = 150 м, t = 10 с.</p>
+            <p><strong>Найти:</strong> v.</p>
+            <div class="solution">
+              Формула: v = s / t<br>
+              Подстановка: v = 150 / 10<br>
+              Ответ: v = 15 м/с
+            </div>
+          </article>
+
+          <article class="example">
+            <div class="example-label">Пример 02 · Давление</div>
+            <h3>Сила 200 Н действует на площадь 0,5 м². Найди давление.</h3>
+            <p><strong>Дано:</strong> F = 200 Н, S = 0,5 м².</p>
+            <p><strong>Найти:</strong> p.</p>
+            <div class="solution">
+              Формула: p = F / S<br>
+              Подстановка: p = 200 / 0,5<br>
+              Ответ: p = 400 Па
+            </div>
+          </article>
+
+          <article class="example">
+            <div class="example-label">Пример 03 · Работа</div>
+            <h3>Тело переместили на 4 м под действием силы 30 Н, направленной вдоль движения. Найди работу.</h3>
+            <p><strong>Дано:</strong> F = 30 Н, s = 4 м.</p>
+            <p><strong>Найти:</strong> A.</p>
+            <div class="solution">
+              Формула: A = Fs<br>
+              Подстановка: A = 30 × 4<br>
+              Ответ: A = 120 Дж
+            </div>
+          </article>
+        </section>
+
+        <section class="content-section" id="test">
+          <div class="section-head">
+            <h2>Проверь себя</h2>
+          </div>
+          <p class="intro">
+            Выбери один ответ в каждом задании. После проверки увидишь результат
+            и объяснения ошибок.
+          </p>
+
+          <form class="test" id="quiz">
+            <div class="question" data-answer="b" data-explanation="Скорость равна пути, делённому на время: 60 / 12 = 5 м/с.">
+              <h3>1. Тело прошло 60 м за 12 с. Чему равна средняя скорость?</h3>
+              <label class="option"><input type="radio" name="q1" value="a"> 720 м/с</label>
+              <label class="option"><input type="radio" name="q1" value="b"> 5 м/с</label>
+              <label class="option"><input type="radio" name="q1" value="c"> 48 м/с</label>
+            </div>
+
+            <div class="question" data-answer="c" data-explanation="Плотность вычисляют делением массы на объём: ρ = m / V.">
+              <h3>2. Как найти плотность вещества?</h3>
+              <label class="option"><input type="radio" name="q2" value="a"> ρ = V / m</label>
+              <label class="option"><input type="radio" name="q2" value="b"> ρ = m × V</label>
+              <label class="option"><input type="radio" name="q2" value="c"> ρ = m / V</label>
+            </div>
+
+            <div class="question" data-answer="a" data-explanation="Работа силы, направленной вдоль перемещения, равна A = Fs = 8 × 3 = 24 Дж.">
+              <h3>3. Сила 8 Н переместила тело на 3 м вдоль направления силы. Какова работа?</h3>
+              <label class="option"><input type="radio" name="q3" value="a"> 24 Дж</label>
+              <label class="option"><input type="radio" name="q3" value="b"> 11 Дж</label>
+              <label class="option"><input type="radio" name="q3" value="c"> 2,7 Дж</label>
+            </div>
+
+            <div class="question" data-answer="b" data-explanation="Единица давления в СИ — паскаль (Па), который равен одному ньютону на квадратный метр.">
+              <h3>4. В каких единицах измеряют давление в системе СИ?</h3>
+              <label class="option"><input type="radio" name="q4" value="a"> Джоуль</label>
+              <label class="option"><input type="radio" name="q4" value="b"> Паскаль</label>
+              <label class="option"><input type="radio" name="q4" value="c"> Ватт</label>
+            </div>
+
+            <div class="question" data-answer="c" data-explanation="1 м/с = 3,6 км/ч, поэтому 10 м/с = 36 км/ч.">
+              <h3>5. Какую скорость в км/ч составляет 10 м/с?</h3>
+              <label class="option"><input type="radio" name="q5" value="a"> 3,6 км/ч</label>
+              <label class="option"><input type="radio" name="q5" value="b"> 10 км/ч</label>
+              <label class="option"><input type="radio" name="q5" value="c"> 36 км/ч</label>
+            </div>
+
+            <button class="primary-button" type="submit">Проверить ответы →</button>
+            <div class="result" id="quizResult" role="status" aria-live="polite"></div>
+          </form>
+        </section>
+
+        <section class="content-section" id="checklist">
+          <div class="section-head">
+            <h2>Перед решением задачи</h2>
+          </div>
+          <p class="intro">Отметь пункты, которые уже проверил.</p>
+
+          <div class="checklist">
+            <label><input type="checkbox"> Выписал известные величины и то, что нужно найти.</label>
+            <label><input type="checkbox"> Перевёл величины в подходящие единицы СИ.</label>
+            <label><input type="checkbox"> Выбрал формулу, подходящую условию.</label>
+            <label><input type="checkbox"> Подставил числа и проверил вычисления.</label>
+            <label><input type="checkbox"> Записал ответ с единицами измерения.</label>
+          </div>
+        </section>
+
+        <div class="finish">
+          <span class="eyebrow">Материал пройден?</span>
+          <h2>Теперь пора к практике</h2>
+          <p>
+            Попробуй решить несколько задач без подсказок. Если ошибся,
+            вернись к нужной формуле и найди, на каком шаге возникла ошибка.
+            Формулы лучше запоминаются через применение.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© Mischenko Edu · Учимся понимать, а не заучивать</span>
+      <a href="https://t.me/mischenko_edu" target="_blank" rel="noopener noreferrer">Связаться в Telegram ↗</a>
+    </div>
+  </footer>
+
+  <script>
+    const quiz = document.getElementById("quiz");
+    const result = document.getElementById("quizResult");
+
+    quiz.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const questions = [...quiz.querySelectorAll(".question")];
+      let score = 0;
+      const mistakes = [];
+
+      questions.forEach(function (question, index) {
+        const selected = question.querySelector("input:checked");
+        const correct = question.dataset.answer;
+
+        if (selected && selected.value === correct) {
+          score++;
+        } else {
+          mistakes.push(
+            "Задание " + (index + 1) + ": " +
+            question.dataset.explanation
+          );
+        }
+      });
+
+      const messages = [
+        "Начало положено! Повтори формулы и попробуй ещё раз.",
+        "Уже лучше. Разбери ошибки и попробуй повторно.",
+        "Хороший результат! Ещё немного практики — и будет увереннее.",
+        "Отлично! Основные формулы ты знаешь.",
+        "Прекрасно! Продолжай решать задачи самостоятельно."
+      ];
+
+      let message;
+      if (score <= 1) message = messages[0];
+      else if (score === 2) message = messages[1];
+      else if (score === 3) message = messages[2];
+      else if (score === 4) message = messages[3];
+      else message = messages[4];
+
+      result.replaceChildren();
+
+      const scoreLine = document.createElement("p");
+      const strong = document.createElement("strong");
+      strong.textContent = "Результат: " + score + " из " + questions.length;
+      scoreLine.appendChild(strong);
+      result.appendChild(scoreLine);
+
+      const messageLine = document.createElement("p");
+      messageLine.textContent = message;
+      result.appendChild(messageLine);
+
+      if (mistakes.length) {
+        const heading = document.createElement("p");
+        heading.textContent = "Разбор заданий для повторения:";
+        result.appendChild(heading);
+
+        const list = document.createElement("ul");
+        list.className = "mistakes";
+
+        mistakes.forEach(function (mistake) {
+          const item = document.createElement("li");
+          item.textContent = mistake;
+          list.appendChild(item);
+        });
+
+        result.appendChild(list);
+      }
+    });
+  </script>
+</body>
+</html>
