@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c0a0f">
-  <meta name="description" content="Бесплатный справочник по физике: формулы, единицы измерения, примеры решения задач и проверочный тест. Mischenko Edu.">
-  <title>Физика: формулы и величины — Mischenko Edu</title>
+  <meta name="description" content="Бесплатный справочник по физике: формулы, единицы измерения, примеры решения задач и интерактивный тест с рекомендациями. Mischenko Edu.">
+  <title>Физика: формулы и основные величины — Mischenko Edu</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,6 @@
       --mint: #9de6cc;
       --lavender: #c6b4ff;
       --peach: #ffc8a9;
-      --radius: 20px;
     }
 
     * { box-sizing: border-box; }
@@ -81,15 +80,13 @@
       border-radius: 12px;
       background: var(--coral);
       color: #211017;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 15px;
+      font: 600 15px "JetBrains Mono", monospace;
       transform: rotate(-5deg);
     }
 
     .back {
       color: var(--muted);
       font-size: 13px;
-      transition: color .2s;
     }
 
     .back:hover { color: var(--text); }
@@ -121,7 +118,7 @@
       position: absolute;
       right: 8%;
       top: 35%;
-      color: #ffc8a9;
+      color: var(--peach);
       font: 600 clamp(18px, 3vw, 27px) "JetBrains Mono", monospace;
       transform: rotate(8deg);
     }
@@ -392,76 +389,193 @@
       font: 12px/1.8 "JetBrains Mono", monospace;
     }
 
+    /* Интерактивный тест */
+
     .test {
-      padding: 20px;
+      padding: 22px;
       border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--panel);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #1c1822, #131017);
     }
 
-    .question {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .question:first-child { padding-top: 0; }
-
-    .question:last-of-type { border-bottom: 0; }
-
-    .question h3 {
-      margin: 0 0 12px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .option {
+    .quiz-top {
       display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      margin: 8px 0;
-      color: #d2c8d8;
-      font-size: 12px;
-      cursor: pointer;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font: 11px "JetBrains Mono", monospace;
     }
 
-    .option input {
-      margin-top: 4px;
+    .quiz-track {
+      height: 5px;
+      margin-bottom: 23px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #302938;
+    }
+
+    .quiz-progress {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--coral);
+      transition: width .25s ease;
+    }
+
+    .quiz-card {
+      padding: clamp(19px, 4vw, 30px);
+      border: 1px solid #3a3042;
+      border-radius: 17px;
+      background: #0f0c13;
+    }
+
+    .quiz-topic {
+      color: var(--lavender);
+      font: 11px "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+    }
+
+    .quiz-card h3 {
+      margin: 13px 0 22px;
+      font-size: clamp(18px, 3vw, 24px);
+      line-height: 1.4;
+      letter-spacing: -.4px;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #17131c;
+      color: #e7dfeb;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .quiz-option:hover { border-color: #8b7197; }
+
+    .quiz-option.selected {
+      border-color: var(--coral);
+      background: #ff777710;
+    }
+
+    .quiz-option input {
+      flex-shrink: 0;
       accent-color: var(--coral);
     }
 
-    .primary-button {
-      margin-top: 15px;
-      padding: 12px 17px;
-      border: 0;
-      border-radius: 10px;
-      background: var(--coral);
-      color: #241219;
-      font-size: 12px;
-      font-weight: 700;
-      transition: opacity .2s;
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
     }
 
-    .primary-button:hover { opacity: .86; }
-
-    .result {
-      margin-top: 14px;
-      padding: 13px;
-      border-radius: 10px;
-      background: var(--panel-light);
+    .quiz-button {
+      padding: 12px 17px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #211b28;
       color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .quiz-button.primary {
+      border-color: transparent;
+      background: var(--coral);
+      color: #241219;
+    }
+
+    .quiz-button:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+    .quiz-hint {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .quiz-result {
+      padding: 24px;
+      border: 1px solid #3a3042;
+      border-radius: 17px;
+      background: #0f0c13;
+    }
+
+    .quiz-result[hidden],
+    .quiz-card[hidden] {
+      display: none;
+    }
+
+    .result-score {
+      margin: 12px 0;
+      color: var(--mint);
+      font: 600 42px "JetBrains Mono", monospace;
+    }
+
+    .result-message {
+      color: var(--muted);
       font-size: 13px;
     }
 
-    .result:empty { display: none; }
+    .recommendation {
+      margin-top: 19px;
+      padding: 16px;
+      border-left: 3px solid var(--lavender);
+      border-radius: 0 12px 12px 0;
+      background: #c6b4ff0d;
+    }
 
-    .result strong { color: var(--mint); }
+    .recommendation strong { color: var(--lavender); }
 
-    .mistakes {
-      margin: 8px 0 0;
-      padding-left: 18px;
+    .recommendation p {
+      margin: 7px 0 0;
+      color: #d8cedf;
+      font-size: 12px;
+    }
+
+    .answer-review {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .review-item {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #17131c;
+    }
+
+    .review-item h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+    }
+
+    .review-item p {
+      margin: 5px 0;
       color: var(--muted);
       font-size: 12px;
     }
+
+    .review-item .correct-text { color: var(--mint); }
+    .review-item .wrong-text { color: var(--coral); }
 
     .checklist {
       display: grid;
@@ -534,7 +648,9 @@
       h1 { letter-spacing: -1.2px; }
       .formula-grid { grid-template-columns: 1fr; }
       .formula-card { padding: 16px; }
-      .test { padding: 15px; }
+      .test { padding: 14px; }
+      .quiz-actions { align-items: stretch; }
+      .quiz-button { padding: 11px 12px; }
     }
   </style>
 </head>
@@ -562,7 +678,7 @@
       <div class="hero-tags">
         <span class="tag">Теория</span>
         <span class="tag">Примеры решений</span>
-        <span class="tag">Тест с ответами</span>
+        <span class="tag">Интерактивный тест</span>
       </div>
     </div>
 
@@ -572,7 +688,7 @@
         <nav class="side-nav" aria-label="Навигация по материалу">
           <a href="#mechanics">01 · Механика</a>
           <a href="#pressure">02 · Давление</a>
-          <a href="#work">03 · Работа и мощность</a>
+          <a href="#work">03 · Работа и энергия</a>
           <a href="#units">04 · Единицы</a>
           <a href="#examples">05 · Примеры</a>
           <a href="#test">06 · Проверь себя</a>
@@ -592,7 +708,6 @@
           </div>
           <p class="intro">
             Начни с движения, скорости и взаимодействия тел.
-            Эти формулы часто встречаются в школьных задачах.
           </p>
 
           <div class="formula-grid">
@@ -625,7 +740,7 @@
             </article>
 
             <article class="formula-card">
-              <div class="formula-label">Сила тяжести у поверхности Земли</div>
+              <div class="formula-label">Сила тяжести</div>
               <div class="formula">Fтяж = mg</div>
               <p>m — масса тела, g ≈ 9,8 Н/кг. В школьных задачах часто берут 10 Н/кг.</p>
               <span class="unit">Н</span>
@@ -639,7 +754,7 @@
             </article>
 
             <article class="formula-card">
-              <div class="formula-label">Сила упругости · закон Гука</div>
+              <div class="formula-label">Закон Гука</div>
               <div class="formula">Fупр = kx</div>
               <p>k — жёсткость пружины, x — модуль её деформации. Сила направлена против деформации.</p>
               <span class="unit">Н</span>
@@ -655,8 +770,8 @@
 
           <div class="info-box">
             <strong>Важно:</strong> формула должна соответствовать условию задачи.
-            Например, v = s/t применяют для средней скорости на рассматриваемом
-            участке, а при равноускоренном движении скорость может меняться.
+            Например, v = s/t применяют для вычисления средней скорости на
+            рассматриваемом участке.
           </div>
         </section>
 
@@ -665,9 +780,7 @@
             <h2>Давление</h2>
             <span class="section-number">02 / 03</span>
           </div>
-          <p class="intro">
-            Здесь важно не путать силу, площадь и плотность.
-          </p>
+          <p class="intro">Не путай силу, площадь и плотность.</p>
 
           <div class="formula-grid">
             <article class="formula-card">
@@ -686,23 +799,23 @@
 
             <article class="formula-card">
               <div class="formula-label">Архимедова сила</div>
-              <div class="formula">FА = ρж g Vпогр</div>
-              <p>Равна весу вытесненной жидкости или газа. Vпогр — объём погружённой части тела.</p>
+              <div class="formula">FА = ρжgV</div>
+              <p>Равна весу вытесненной жидкости или газа. V — объём погружённой части тела.</p>
               <span class="unit">Н</span>
             </article>
 
             <article class="formula-card">
-              <div class="formula-label">Вес тела в покое на опоре</div>
+              <div class="formula-label">Вес тела в простом случае</div>
               <div class="formula">P = mg</div>
-              <p>В простом случае покоя на горизонтальной опоре без дополнительных вертикальных сил.</p>
+              <p>Для тела в покое на горизонтальной опоре без дополнительных вертикальных сил.</p>
               <span class="unit">Н</span>
             </article>
           </div>
 
           <div class="info-box">
-            <strong>Запомни:</strong> чем меньше площадь опоры при одной и той же
-            силе, тем больше давление. Перед подстановкой чисел переведи площадь
-            в квадратные метры, если ответ нужен в паскалях.
+            <strong>Запомни:</strong> при одной и той же силе уменьшение площади
+            опоры увеличивает давление. Для ответа в паскалях площадь обычно
+            переводят в квадратные метры.
           </div>
         </section>
 
@@ -711,9 +824,7 @@
             <h2>Работа, мощность и энергия</h2>
             <span class="section-number">03 / 03</span>
           </div>
-          <p class="intro">
-            Эти величины помогают описывать передачу энергии и работу сил.
-          </p>
+          <p class="intro">Эти величины описывают передачу энергии и работу сил.</p>
 
           <div class="formula-grid">
             <article class="formula-card">
@@ -750,9 +861,7 @@
           <div class="section-head">
             <h2>Единицы измерения</h2>
           </div>
-          <p class="intro">
-            Перед решением проверь, в каких единицах даны величины.
-          </p>
+          <p class="intro">Перед решением проверь, в каких единицах даны величины.</p>
 
           <div class="table-wrap">
             <table>
@@ -765,67 +874,22 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Путь</td>
-                  <td>s</td>
-                  <td>метр (м)</td>
-                  <td>1 км = 1000 м</td>
-                </tr>
-                <tr>
-                  <td>Время</td>
-                  <td>t</td>
-                  <td>секунда (с)</td>
-                  <td>1 ч = 3600 с</td>
-                </tr>
-                <tr>
-                  <td>Скорость</td>
-                  <td>v</td>
-                  <td>м/с</td>
-                  <td>1 м/с = 3,6 км/ч</td>
-                </tr>
-                <tr>
-                  <td>Масса</td>
-                  <td>m</td>
-                  <td>килограмм (кг)</td>
-                  <td>1 г = 0,001 кг</td>
-                </tr>
-                <tr>
-                  <td>Объём</td>
-                  <td>V</td>
-                  <td>м³</td>
-                  <td>1 л = 0,001 м³</td>
-                </tr>
-                <tr>
-                  <td>Сила</td>
-                  <td>F</td>
-                  <td>ньютон (Н)</td>
-                  <td>1 кН = 1000 Н</td>
-                </tr>
-                <tr>
-                  <td>Давление</td>
-                  <td>p</td>
-                  <td>паскаль (Па)</td>
-                  <td>1 кПа = 1000 Па</td>
-                </tr>
-                <tr>
-                  <td>Работа, энергия</td>
-                  <td>A, E</td>
-                  <td>джоуль (Дж)</td>
-                  <td>1 кДж = 1000 Дж</td>
-                </tr>
-                <tr>
-                  <td>Мощность</td>
-                  <td>N</td>
-                  <td>ватт (Вт)</td>
-                  <td>1 кВт = 1000 Вт</td>
-                </tr>
+                <tr><td>Путь</td><td>s</td><td>метр (м)</td><td>1 км = 1000 м</td></tr>
+                <tr><td>Время</td><td>t</td><td>секунда (с)</td><td>1 ч = 3600 с</td></tr>
+                <tr><td>Скорость</td><td>v</td><td>м/с</td><td>1 м/с = 3,6 км/ч</td></tr>
+                <tr><td>Масса</td><td>m</td><td>килограмм (кг)</td><td>1 г = 0,001 кг</td></tr>
+                <tr><td>Объём</td><td>V</td><td>м³</td><td>1 л = 0,001 м³</td></tr>
+                <tr><td>Сила</td><td>F</td><td>ньютон (Н)</td><td>1 кН = 1000 Н</td></tr>
+                <tr><td>Давление</td><td>p</td><td>паскаль (Па)</td><td>1 кПа = 1000 Па</td></tr>
+                <tr><td>Работа, энергия</td><td>A, E</td><td>джоуль (Дж)</td><td>1 кДж = 1000 Дж</td></tr>
+                <tr><td>Мощность</td><td>N</td><td>ватт (Вт)</td><td>1 кВт = 1000 Вт</td></tr>
               </tbody>
             </table>
           </div>
 
           <div class="info-box">
-            <strong>Перевод скорости:</strong> чтобы перевести км/ч в м/с,
-            раздели значение на 3,6. Чтобы перевести м/с в км/ч, умножь на 3,6.
+            <strong>Перевод скорости:</strong> из км/ч в м/с — разделить на 3,6.
+            Из м/с в км/ч — умножить на 3,6.
           </div>
         </section>
 
@@ -833,9 +897,7 @@
           <div class="section-head">
             <h2>Разберём задачи</h2>
           </div>
-          <p class="intro">
-            Смотри не только на ответ, но и на порядок решения.
-          </p>
+          <p class="intro">Обрати внимание на последовательность решения.</p>
 
           <article class="example">
             <div class="example-label">Пример 01 · Движение</div>
@@ -877,51 +939,70 @@
         <section class="content-section" id="test">
           <div class="section-head">
             <h2>Проверь себя</h2>
+            <span class="section-number">QUIZ / 05</span>
           </div>
+
           <p class="intro">
-            Выбери один ответ в каждом задании. После проверки увидишь результат
-            и объяснения ошибок.
+            Пять вопросов по основным формулам физики. Выбирай ответ и
+            переходи к следующему заданию. В конце получишь результат,
+            разбор ошибок и рекомендации.
           </p>
 
-          <form class="test" id="quiz">
-            <div class="question" data-answer="b" data-explanation="Скорость равна пути, делённому на время: 60 / 12 = 5 м/с.">
-              <h3>1. Тело прошло 60 м за 12 с. Чему равна средняя скорость?</h3>
-              <label class="option"><input type="radio" name="q1" value="a"> 720 м/с</label>
-              <label class="option"><input type="radio" name="q1" value="b"> 5 м/с</label>
-              <label class="option"><input type="radio" name="q1" value="c"> 48 м/с</label>
+          <div class="test" id="physicsQuiz">
+            <div class="quiz-top">
+              <span id="quizCounter">ВОПРОС 01 / 05</span>
+              <span id="quizPercent">0% пройдено</span>
             </div>
 
-            <div class="question" data-answer="c" data-explanation="Плотность вычисляют делением массы на объём: ρ = m / V.">
-              <h3>2. Как найти плотность вещества?</h3>
-              <label class="option"><input type="radio" name="q2" value="a"> ρ = V / m</label>
-              <label class="option"><input type="radio" name="q2" value="b"> ρ = m × V</label>
-              <label class="option"><input type="radio" name="q2" value="c"> ρ = m / V</label>
+            <div
+              class="quiz-track"
+              role="progressbar"
+              aria-label="Прогресс прохождения теста"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              id="quizTrack"
+            >
+              <div class="quiz-progress" id="quizProgress"></div>
             </div>
 
-            <div class="question" data-answer="a" data-explanation="Работа силы, направленной вдоль перемещения, равна A = Fs = 8 × 3 = 24 Дж.">
-              <h3>3. Сила 8 Н переместила тело на 3 м вдоль направления силы. Какова работа?</h3>
-              <label class="option"><input type="radio" name="q3" value="a"> 24 Дж</label>
-              <label class="option"><input type="radio" name="q3" value="b"> 11 Дж</label>
-              <label class="option"><input type="radio" name="q3" value="c"> 2,7 Дж</label>
+            <div class="quiz-card" id="quizCard">
+              <div class="quiz-topic" id="quizTopic">Механика</div>
+              <h3 id="quizQuestion">Загружаем вопрос…</h3>
+              <div class="quiz-options" id="quizOptions"></div>
+
+              <div class="quiz-actions">
+                <button class="quiz-button" id="quizBack" type="button" disabled>
+                  ← Назад
+                </button>
+                <button class="quiz-button primary" id="quizNext" type="button" disabled>
+                  Далее →
+                </button>
+              </div>
+
+              <p class="quiz-hint" id="quizHint">
+                Выбери один вариант ответа.
+              </p>
             </div>
 
-            <div class="question" data-answer="b" data-explanation="Единица давления в СИ — паскаль (Па), который равен одному ньютону на квадратный метр.">
-              <h3>4. В каких единицах измеряют давление в системе СИ?</h3>
-              <label class="option"><input type="radio" name="q4" value="a"> Джоуль</label>
-              <label class="option"><input type="radio" name="q4" value="b"> Паскаль</label>
-              <label class="option"><input type="radio" name="q4" value="c"> Ватт</label>
-            </div>
+            <div class="quiz-result" id="quizResult" hidden>
+              <div class="eyebrow">Тест завершён</div>
+              <div class="result-score" id="resultScore">0/5</div>
+              <h3 id="resultTitle">Твой результат</h3>
+              <p class="result-message" id="resultMessage"></p>
 
-            <div class="question" data-answer="c" data-explanation="1 м/с = 3,6 км/ч, поэтому 10 м/с = 36 км/ч.">
-              <h3>5. Какую скорость в км/ч составляет 10 м/с?</h3>
-              <label class="option"><input type="radio" name="q5" value="a"> 3,6 км/ч</label>
-              <label class="option"><input type="radio" name="q5" value="b"> 10 км/ч</label>
-              <label class="option"><input type="radio" name="q5" value="c"> 36 км/ч</label>
-            </div>
+              <div class="recommendation">
+                <strong>Твоя рекомендация</strong>
+                <p id="resultRecommendation"></p>
+              </div>
 
-            <button class="primary-button" type="submit">Проверить ответы →</button>
-            <div class="result" id="quizResult" role="status" aria-live="polite"></div>
-          </form>
+              <div class="answer-review" id="answerReview"></div>
+
+              <button class="quiz-button primary" id="quizRestart" type="button">
+                Пройти ещё раз ↻
+              </button>
+            </div>
+          </div>
         </section>
 
         <section class="content-section" id="checklist">
@@ -955,79 +1036,237 @@
   <footer>
     <div class="wrap footer-inner">
       <span>© Mischenko Edu · Учимся понимать, а не заучивать</span>
-      <a href="https://t.me/mischenko_edu" target="_blank" rel="noopener noreferrer">Связаться в Telegram ↗</a>
+      <a href="https://t.me/mischenko_edu" target="_blank" rel="noopener noreferrer">
+        Связаться в Telegram ↗
+      </a>
     </div>
   </footer>
 
   <script>
-    const quiz = document.getElementById("quiz");
-    const result = document.getElementById("quizResult");
+    (() => {
+      const questions = [
+        {
+          topic: "Механика",
+          question: "Тело прошло 60 м за 12 с. Чему равна его средняя скорость?",
+          options: ["720 м/с", "5 м/с", "48 м/с"],
+          answer: 1,
+          explanation: "Скорость равна пути, делённому на время: 60 / 12 = 5 м/с.",
+          skill: "speed"
+        },
+        {
+          topic: "Плотность",
+          question: "Как найти плотность вещества, если известны масса и объём?",
+          options: ["ρ = V / m", "ρ = m × V", "ρ = m / V"],
+          answer: 2,
+          explanation: "Плотность вычисляют по формуле ρ = m / V: массу делят на объём.",
+          skill: "density"
+        },
+        {
+          topic: "Работа",
+          question: "Сила 8 Н переместила тело на 3 м вдоль направления силы. Чему равна работа?",
+          options: ["24 Дж", "11 Дж", "2,7 Дж"],
+          answer: 0,
+          explanation: "Работа равна произведению силы на путь: A = 8 × 3 = 24 Дж.",
+          skill: "work"
+        },
+        {
+          topic: "Единицы измерения",
+          question: "В каких единицах СИ измеряется давление?",
+          options: ["Джоуль (Дж)", "Паскаль (Па)", "Ватт (Вт)"],
+          answer: 1,
+          explanation: "Единица давления — паскаль: 1 Па = 1 Н/м².",
+          skill: "units"
+        },
+        {
+          topic: "Перевод единиц",
+          question: "Скорость равна 10 м/с. Сколько это километров в час?",
+          options: ["3,6 км/ч", "10 км/ч", "36 км/ч"],
+          answer: 2,
+          explanation: "Чтобы перевести м/с в км/ч, умножаем на 3,6: 10 × 3,6 = 36 км/ч.",
+          skill: "conversion"
+        }
+      ];
 
-    quiz.addEventListener("submit", function (event) {
-      event.preventDefault();
+      const recommendations = {
+        speed: "Повтори формулы v = s / t и s = vt. Реши ещё две задачи на скорость, путь и время.",
+        density: "Повтори ρ = m / V. Потренируйся находить по этой формуле плотность, массу и объём.",
+        work: "Повтори A = Fs и проверь, в каком направлении действует сила относительно перемещения.",
+        units: "Повтори таблицу единиц СИ: давление — паскаль, работа — джоуль, мощность — ватт.",
+        conversion: "Повтори перевод скорости: км/ч → м/с делением на 3,6; м/с → км/ч умножением на 3,6."
+      };
 
-      const questions = [...quiz.querySelectorAll(".question")];
-      let score = 0;
-      const mistakes = [];
+      const root = document.getElementById("physicsQuiz");
+      if (!root) return;
 
-      questions.forEach(function (question, index) {
-        const selected = question.querySelector("input:checked");
-        const correct = question.dataset.answer;
+      const $ = id => document.getElementById(id);
+      let current = 0;
+      let answers = Array(questions.length).fill(null);
 
-        if (selected && selected.value === correct) {
-          score++;
+      function renderQuestion() {
+        const q = questions[current];
+
+        $("quizCard").hidden = false;
+        $("quizResult").hidden = true;
+
+        $("quizCounter").textContent =
+          `ВОПРОС ${String(current + 1).padStart(2, "0")} / ${String(questions.length).padStart(2, "0")}`;
+
+        const percent = Math.round((current / questions.length) * 100);
+        $("quizPercent").textContent = `${percent}% пройдено`;
+        $("quizProgress").style.width = `${percent}%`;
+        $("quizTrack").setAttribute("aria-valuenow", String(percent));
+
+        $("quizTopic").textContent = q.topic;
+        $("quizQuestion").textContent = q.question;
+        $("quizOptions").replaceChildren();
+
+        q.options.forEach((option, index) => {
+          const label = document.createElement("label");
+          label.className = "quiz-option";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `physics-question-${current}`;
+          input.value = String(index);
+          input.checked = answers[current] === index;
+
+          const text = document.createElement("span");
+          text.textContent = option;
+
+          label.append(input, text);
+
+          if (input.checked) label.classList.add("selected");
+
+          input.addEventListener("change", () => {
+            answers[current] = index;
+            updateOptions();
+            $("quizNext").disabled = false;
+            $("quizHint").textContent = "Ответ выбран. Можно переходить дальше.";
+          });
+
+          $("quizOptions").appendChild(label);
+        });
+
+        $("quizBack").disabled = current === 0;
+        $("quizNext").disabled = answers[current] === null;
+        $("quizNext").textContent =
+          current === questions.length - 1
+            ? "Узнать результат →"
+            : "Далее →";
+
+        $("quizHint").textContent = answers[current] === null
+          ? "Выбери один вариант ответа."
+          : "Ответ сохранён. Можешь перейти дальше или вернуться назад.";
+      }
+
+      function updateOptions() {
+        $("quizOptions").querySelectorAll(".quiz-option").forEach(label => {
+          const input = label.querySelector("input");
+          label.classList.toggle("selected", input.checked);
+        });
+      }
+
+      function showResult() {
+        const score = questions.reduce(
+          (sum, q, index) => sum + (answers[index] === q.answer ? 1 : 0),
+          0
+        );
+
+        const wrongQuestions = questions.filter(
+          (q, index) => answers[index] !== q.answer
+        );
+
+        $("quizCard").hidden = true;
+        $("quizResult").hidden = false;
+        $("quizCounter").textContent = "ТЕСТ ЗАВЕРШЁН";
+        $("quizPercent").textContent = "100% пройдено";
+        $("quizProgress").style.width = "100%";
+        $("quizTrack").setAttribute("aria-valuenow", "100");
+
+        $("resultScore").textContent = `${score}/${questions.length}`;
+
+        let title;
+        let message;
+
+        if (score === 5) {
+          title = "Прекрасно! Все ответы верны.";
+          message = "Ты уверенно справился с этим набором вопросов. Попробуй применить формулы в более сложных задачах.";
+        } else if (score >= 3) {
+          title = "Хороший результат!";
+          message = "Основы уже знакомы. Разбери ошибки ниже, чтобы закрепить темы, в которых пока есть сомнения.";
         } else {
-          mistakes.push(
-            "Задание " + (index + 1) + ": " +
-            question.dataset.explanation
-          );
+          title = "Есть что повторить — это нормально.";
+          message = "Вернись к справочнику, внимательно разбери решения и попробуй тест ещё раз.";
+        }
+
+        $("resultTitle").textContent = title;
+        $("resultMessage").textContent = message;
+
+        const uniqueSkills = [...new Set(wrongQuestions.map(q => q.skill))];
+
+        $("resultRecommendation").textContent = wrongQuestions.length
+          ? uniqueSkills.map(skill => recommendations[skill]).join(" ")
+          : "Ошибок нет. Для следующего шага реши задачи, в которых нужно самостоятельно выбрать формулу и преобразовать её.";
+
+        const review = $("answerReview");
+        review.replaceChildren();
+
+        questions.forEach((q, index) => {
+          const isCorrect = answers[index] === q.answer;
+          const item = document.createElement("article");
+          item.className = "review-item";
+
+          const heading = document.createElement("h4");
+          heading.textContent = `${index + 1}. ${q.topic}`;
+
+          const question = document.createElement("p");
+          question.textContent = q.question;
+
+          const yourAnswer = document.createElement("p");
+          yourAnswer.className = isCorrect ? "correct-text" : "wrong-text";
+          yourAnswer.textContent = answers[index] === null
+            ? "Твой ответ: не выбран"
+            : `Твой ответ: ${q.options[answers[index]]}`;
+
+          const correctAnswer = document.createElement("p");
+          correctAnswer.className = "correct-text";
+          correctAnswer.textContent = `Правильный ответ: ${q.options[q.answer]}`;
+
+          const explanation = document.createElement("p");
+          explanation.textContent = q.explanation;
+
+          item.append(heading, question, yourAnswer, correctAnswer, explanation);
+          review.appendChild(item);
+        });
+      }
+
+      $("quizBack").addEventListener("click", () => {
+        if (current > 0) {
+          current--;
+          renderQuestion();
         }
       });
 
-      const messages = [
-        "Начало положено! Повтори формулы и попробуй ещё раз.",
-        "Уже лучше. Разбери ошибки и попробуй повторно.",
-        "Хороший результат! Ещё немного практики — и будет увереннее.",
-        "Отлично! Основные формулы ты знаешь.",
-        "Прекрасно! Продолжай решать задачи самостоятельно."
-      ];
+      $("quizNext").addEventListener("click", () => {
+        if (answers[current] === null) return;
 
-      let message;
-      if (score <= 1) message = messages[0];
-      else if (score === 2) message = messages[1];
-      else if (score === 3) message = messages[2];
-      else if (score === 4) message = messages[3];
-      else message = messages[4];
+        if (current < questions.length - 1) {
+          current++;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
 
-      result.replaceChildren();
+      $("quizRestart").addEventListener("click", () => {
+        current = 0;
+        answers = Array(questions.length).fill(null);
+        renderQuestion();
+        root.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
 
-      const scoreLine = document.createElement("p");
-      const strong = document.createElement("strong");
-      strong.textContent = "Результат: " + score + " из " + questions.length;
-      scoreLine.appendChild(strong);
-      result.appendChild(scoreLine);
-
-      const messageLine = document.createElement("p");
-      messageLine.textContent = message;
-      result.appendChild(messageLine);
-
-      if (mistakes.length) {
-        const heading = document.createElement("p");
-        heading.textContent = "Разбор заданий для повторения:";
-        result.appendChild(heading);
-
-        const list = document.createElement("ul");
-        list.className = "mistakes";
-
-        mistakes.forEach(function (mistake) {
-          const item = document.createElement("li");
-          item.textContent = mistake;
-          list.appendChild(item);
-        });
-
-        result.appendChild(list);
-      }
-    });
+      renderQuestion();
+    })();
   </script>
 </body>
 </html>
